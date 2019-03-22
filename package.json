@@ -7,10 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "start:watch": "node_modules/.bin/nodemon --exec \"npm run start\"",
-    "build-frontend": "npm run build --prefix ../client",
-    "client": "npm run start --prefix ../client",
+    "build-frontend": "npm run build --prefix client",
+    "client": "npm run start --prefix client",
     "both": "concurrently \"npm run start:watch\" \"npm run client\"",
-    "heroku-postbuild": "cd ../client && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
