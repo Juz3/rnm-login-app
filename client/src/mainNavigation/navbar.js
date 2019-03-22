@@ -150,13 +150,13 @@ export default class Navigation extends React.Component {
               }
             });
         
-            alert("Kirjauduttu ulos");
+            alert("Logged out");
             // redirect back to index page
             history.push("/login")
             
           }}
         >
-          Kirjaudu ulos
+          Log out
         </Button>
     );
 
@@ -176,8 +176,7 @@ export default class Navigation extends React.Component {
               <NavItem className="titleLink">
                 <Link className="navbar-brand" to="/home">
                   <p>
-                    Kurikan amiksen varastojärjestelmä - 
-                    Koulutuskeskus Sedu, Kurikka
+                    React + Node.js + MySQL (+heroku) login application
                   </p>
                 </Link>
               </NavItem>
@@ -194,27 +193,27 @@ export default class Navigation extends React.Component {
           <Nav>
             <NavItem style={this.state.loginStyle}>
               <Link className="nav-link" to="/login">
-                  Kirjaudu sisään
+                  Log in
               </Link>
             </NavItem>
             <NavItem style={this.state.homeStyle}>
               <Link className="nav-link" to="/home">
-                  Koti
+                  Home
               </Link>
             </NavItem>
             <NavItem style={this.state.searchStyle}>
               <Link className="nav-link" to="/search">
-                  Haku
+                  Search
               </Link>
             </NavItem>
             <NavItem style={this.state.storageStyle}>
               <Link className="nav-link" to="/storage">
-                  Varaston selaus
+                  Browse
                 </Link>
             </NavItem>
             <NavItem>
               <Link className="nav-link" to="/about">
-                  Esittely
+                  About
               </Link>
             </NavItem>
           </Nav>

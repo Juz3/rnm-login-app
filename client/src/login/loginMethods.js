@@ -225,9 +225,9 @@ class LoginMethods extends React.Component {
                   <div className="loginForm">
                     <Form>
                       <FormGroup>
-                        <Label for="loginID">Käyttäjätunnus</Label>
+                        <Label for="loginID">Username</Label>
                         <Input type="text" name="text" id="loginID" 
-                          placeholder="Käyttäjätunnus" 
+                          placeholder="Username" 
                           onChange = {(event) => 
                             this.setState({
                               loginID:event.target.value
@@ -236,9 +236,9 @@ class LoginMethods extends React.Component {
                         />
                       </FormGroup>
                       <FormGroup>
-                        <Label for="password">Salasana</Label>
+                        <Label for="password">Password</Label>
                         <Input type="password" name="text" id="password" 
-                          placeholder="Salasana" 
+                          placeholder="Password" 
                           onChange = {(event) => 
                             this.setState({
                               password:event.target.value
@@ -256,7 +256,7 @@ class LoginMethods extends React.Component {
                           this.handleClick(event);
                         }}
                       >
-                        Kirjaudu
+                        Log in
                       </Button>
                     </Form>
                   </div>

@@ -52,31 +52,21 @@ class AboutPage extends React.Component {
         <Container>
           <Row>
             <Col className="aboutColTop">
-              <h2 style={this.state.headingStyle}>Palvelun esittely</h2>
-              <p style={this.state.headingStyle}><strong>Kuvaus 1:</strong></p>
-              <p>Työkaluvarausjärjestelmä Koulutuskeskus Sedun Kurikan toimipisteen varastolle. 
-                Projektin tavoitteena on luoda nykyaikainen sähköinen varausjärjestelmä 
-                opiskelijoiden sekä opettajien käyttöön, korvaamaan vanhan paperikirjanpitoon perustuneen 
-                käytössä olevan järjestelmän. Palvelu on tarkoitettu käytettäväksi Kurikan
-                toimipisteen varastolla viivakoodinlukijan avulla. Varaston tuotteissa tulee
-                olemaan viivakoodit, joka sisältää tuotteelle annetun sähkönumeron.</p>
-              <p style={this.state.headingStyle}><strong>Toiminnot:</strong></p>
+              <h2 style={this.state.headingStyle}>x</h2>
+              <p style={this.state.headingStyle}><strong>x</strong></p>
+              <p>x.</p>
+              <p style={this.state.headingStyle}><strong>x</strong></p>
               <ul className="aboutULmid">
-                <li className="aboutList">Kirjautuminen</li> 
-                <li className="aboutList">Uusien käyttäjätilien luonti (avoinna toistaiseksi admineille)</li>
-                <li className="aboutList">Varaston tuotteiden selaus</li>
-                <li className="aboutList">Tuotteiden lisäys tietokantaan (avoinna admineille)</li>
-                <li className="aboutList">Tuotteiden haku sähkönumerolla <a href="http://www.sahkonumerot.fi/"> (mikä on sähkönumero?)</a></li>
-                <li className="aboutList">Lainojen luonti hakutoiminnon kautta</li>
-                <li className="aboutList">Käyttäjätietojen ja lainojen listaus</li>
+                <li className="aboutList">x</li> 
+                <li className="aboutList">x</li>
               </ul>
-              <p style={this.state.headingStyle}><strong>Tulevat ominaisuudet:</strong></p>
+              <p style={this.state.headingStyle}><strong>x</strong></p>
               <ul className="aboutULmid">
                 <li className="aboutList">
-                  Varastosaldon asianmukainen päivitys sekä tuotetietojen editointi
+                  xx
                 </li>
                 <li className="aboutList">
-                  Salasananpalautusjärjestelmä (Nodemailer)
+                  xx
                 </li>
               </ul>
             </Col>
@@ -84,7 +74,6 @@ class AboutPage extends React.Component {
           <Row>
             <Col className="aboutColLeft">
               <h2>Frontend</h2>
-              <p>Tekniikat:</p>
               <ul className="aboutUL">
                 <li>
                   <a className="nav-link" href="https://reactjs.org/">
@@ -115,7 +104,6 @@ class AboutPage extends React.Component {
             </Col>
             <Col className="aboutColRight">
               <h2>Backend</h2>
-              <p>Tekniikat:</p>
               <ul className="aboutUL">
                 <li >
                   <a className="nav-link" href="https://nodejs.org/en/">
