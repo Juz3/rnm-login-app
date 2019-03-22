@@ -190,7 +190,7 @@ exports.login = (req, res) => {
   
                 // Sign the Token
                 // expiresIn : seconds
-                jwt.sign(payload, keys.jwtSecretKey, {expiresIn: '7200s'}, 
+                jwt.sign(payload, keys.jwtSecret, {expiresIn: '7200s'}, 
                   (err, token) => {
   
                       if(err) {
@@ -242,7 +242,7 @@ exports.login = (req, res) => {
 // GET Home route
 exports.getHome = (req, res) => {
 
-  jwt.verify(req.token, keys.jwtSecretKey, (err, authData) => {
+  jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
     // If jwt verification gives an error
     if(err) {
       console.log("error in jwt verify", err);
@@ -289,7 +289,7 @@ exports.getHome = (req, res) => {
 // GET Home route
 exports.getLoan = (req, res) => {
 
-  jwt.verify(req.token, keys.jwtSecretKey, (err, authData) => {
+  jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
     // If jwt verification gives an error
     if(err) {
       console.log("error in jwt verify", err);
@@ -347,7 +347,7 @@ exports.getLoan = (req, res) => {
 // if JWT is valid, send sql query to list all items from table 'Storage'
 exports.getStorage = (req, res) => {
 
-  jwt.verify(req.token, keys.jwtSecretKey, (err, authData) => {
+  jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
     // If jwt verification gives an error
     if(err) {
       console.log("error in jwt verify", err);
@@ -392,7 +392,7 @@ exports.search = (req, res) => {
 
   var searchVal = req.body.eNumber;
 
-  jwt.verify(req.token, keys.jwtSecretKey, (err, authData) => {
+  jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
     // If jwt verification gives an error
     if(err) {
 
@@ -451,7 +451,7 @@ exports.addItemToStorage = (req, res) => {
   //console.log("req",  req.body);
 
   // verify jsonwebtoken
-  jwt.verify(req.token, keys.jwtSecretKey, (err, authData) => {
+  jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
     // If jwt verification gives an error
     if(err) {
       console.log("error in jwt verify", err);
@@ -519,7 +519,7 @@ exports.makeLoan = (req, res) => {
   console.log("loan req body",  req.body);
 
   // verify jsonwebtoken
-  jwt.verify(req.token, keys.jwtSecretKey, (err, authData) => {
+  jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
     // If jwt verification gives an error
     if(err) {
       console.log("error in jwt verify", err);
@@ -618,7 +618,7 @@ exports.addToLoanList = (req, res) => {
   console.log("loanlist req body",  req.body);
 
   // verify jsonwebtoken
-  jwt.verify(req.token, keys.jwtSecretKey, (err, authData) => {
+  jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
     // If jwt verification gives an error
     if(err) {
       console.log("error in jwt verify", err);

@@ -26,7 +26,7 @@ const port = process.env.PORT || 5000;
 if(process.env.NODE_ENV === 'production') {
   // Router headers
   router.use((req, res, next) => {
-  //res.header('Access-Control-Allow-Origin', 'https://floating-fortress-36530.herokuapp.com');
+  res.header('Access-Control-Allow-Origin', 'https://peaceful-fortress-30481.herokuapp.com');
   res.header('Access-Control-Allow-Headers', 
   'Content-Type, Cookie, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
