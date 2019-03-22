@@ -60,6 +60,7 @@ class StorageMethods extends React.Component {
 
   handleClick(event) {
 
+    // ADD HEROKU?
     var apiBaseUrl = "http://localhost:5000/api/";
 
     var self = this;

@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Juz3/sk_wamasys_public.git"
+    "url": "git+https://github.com/Juz3/rnm-login-app.git"
   },
   "keywords": [],
   "author": "Jussi Koivumäki",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Juz3/sk_wamasys_public/issues"
+    "url": "https://github.com/Juz3/rnm-login-app/issues"
   },
-  "homepage": "https://github.com/Juz3/sk_wamasys_public#readme",
+  "homepage": "https://github.com/Juz3/rnm-login-app#readme",
   "dependencies": {
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",

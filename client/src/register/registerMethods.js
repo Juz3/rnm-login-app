@@ -146,7 +146,7 @@ class RegisterMethods extends React.Component {
     var apiBaseUrl;
 
     if(process.env.NODE_ENV === 'production') {
-      apiBaseUrl = "https://floating-fortress-36530.herokuapp.com/api/";
+      apiBaseUrl = "https://peaceful-fortress-30481.herokuapp.com/api/";
     } else {
       apiBaseUrl = "http://localhost:5000/api/";
     }
