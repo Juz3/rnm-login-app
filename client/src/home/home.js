@@ -220,7 +220,7 @@ class HomePage extends React.Component {
         <td className = 'userEmail' key = 'd.email'>{d.email}</td>
       </tr>
     );
-
+/*
     // Loan Data object, fetched from api via axios get() at componentDidMount()
     const loanData = this.state.userLoanData;
 //<th className = 'loanTime' scope="row" key = 'd.time'>{d.time.slice(0, 19).replace('T', ' ')}</th>
@@ -235,7 +235,7 @@ class HomePage extends React.Component {
         <td className = 'loanLoaned' key = 'd.loaned'>{d.loaned}</td>
       </tr>
     );
-      
+*/    
     return (
 
       <div>
@@ -243,7 +243,7 @@ class HomePage extends React.Component {
           <Container>
             <Row>
               <Col className="homePageUserData">
-                <h2 className = "userDataHeading">Käyttäjän tiedot</h2>
+                <h2 className = "userDataHeading">Profile</h2>
               </Col>
             </Row>
           </Container>
@@ -265,35 +265,6 @@ class HomePage extends React.Component {
                     </thead>
                     <tbody className = 'userDataList' key = 'd.tbody'>
                       {listUserData}
-                    </tbody>
-                  </Table>
-                </div>
-              </div>
-            </Row>
-          </Container>
-          <Container>
-            <Row>
-              <Col className="homePageUserData">
-                <h2 className = "userDataHeading">Lainat</h2>
-              </Col>
-            </Row>
-          </Container>
-          <Container>
-            <Row>
-              <div className="midInputCol">
-                <div className='userDataList'>
-                <Table className = 'userDataTable' style={this.state.homePageDivStyle}>
-                    <thead>
-                      <tr key="tableHeaderRow" >
-                        <th className = 'loanTime'>aika</th>
-                        <th className = 'loanStatus'>status</th>
-                        <th className = 'loanComment'>kommentti</th>
-                        <th className = 'loanItemName'>tuote</th>
-                        <th className = 'loanLoaned'>määrä</th>
-                      </tr>
-                    </thead>
-                    <tbody className = 'userLoanDataList' key = 'd.tbody'>
-                      {listUserLoanData}
                     </tbody>
                   </Table>
                 </div>

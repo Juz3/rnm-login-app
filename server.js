@@ -95,7 +95,7 @@ router.get('/home', verifyToken, routeFile.getHome);
 /*
 router.get('/homeloan', verifyToken, routeFile.getLoan);
 */
-
+/*
 // storage get route
 // *this is a Protected route*
 router.get('/storage', verifyToken, routeFile.getStorage);
@@ -112,7 +112,7 @@ router.post('/loanlist', verifyToken, routeFile.addToLoanList);
 
 // *this is a Protected route*
 router.post('/search', verifyToken, routeFile.search);
-
+*/
 app.use('/api', router);
 
 // The "catch all requests"-handler: for any request that doesn't

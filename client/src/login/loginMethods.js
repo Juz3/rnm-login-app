@@ -258,7 +258,7 @@ class LoginMethods extends React.Component {
                           this.handleClick(event);
                         }}
                       >
-                        Sign in
+                        Log in
                       </Button>
                     </Form>
                   </div>

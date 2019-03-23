@@ -205,9 +205,9 @@ class RegisterMethods extends React.Component {
                   <div className="registerForm">
                     <Form>
                       <FormGroup>
-                        <Label for="Name">Etu- ja sukunimi</Label>
+                        <Label for="Name">First- and lastname</Label>
                         <Input type="text" name="username" id="username" 
-                        placeholder="Etu- ja sukunimi" 
+                        placeholder="First- and lastname" 
                         onChange = {(event) => 
                           this.setState({
                             username:event.target.value
@@ -215,9 +215,9 @@ class RegisterMethods extends React.Component {
                         }/>
                       </FormGroup>
                       <FormGroup>
-                        <Label for="LoginID">Käyttäjätunnus (Login ID)</Label>
+                        <Label for="LoginID">Username</Label>
                         <Input type="text" name="loginID" id="loginID" 
-                        placeholder="Käyttäjätunnus" 
+                        placeholder="Username" 
                         onChange = {(event) => 
                           this.setState({
                               loginID:event.target.value
@@ -225,9 +225,9 @@ class RegisterMethods extends React.Component {
                           }/>
                       </FormGroup>
                       <FormGroup>
-                        <Label for="email">Sähköpostiosoite</Label>
+                        <Label for="email">Email</Label>
                         <Input type="email" name="email" id="email" 
-                        placeholder="osoite@sähköposti.com" 
+                        placeholder="mail@mail.xyz" 
                         onChange = {(event) => 
                           this.setState({
                             email:event.target.value
@@ -235,9 +235,9 @@ class RegisterMethods extends React.Component {
                         }/>
                       </FormGroup>
                       <FormGroup>
-                        <Label for="pw">Salasana</Label>
+                        <Label for="pw">Password</Label>
                         <Input type="password" name="password" id="password" 
-                        placeholder="Salasana" 
+                        placeholder="Password" 
                         onChange = {(event) => 
                           this.setState({
                             password:event.target.value
@@ -248,7 +248,7 @@ class RegisterMethods extends React.Component {
                         onClick={(event) => 
                           this.handleClick(event)} 
                         style={this.state.okBtnStyle}>
-                          Rekisteröidy
+                          Register
                       </Button>
                     </Form>
                   </div>
