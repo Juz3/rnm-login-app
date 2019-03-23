@@ -156,7 +156,7 @@ export default class Navigation extends React.Component {
             
           }}
         >
-          Sign out
+          Log out
         </Button>
     );
 /* LINKS NOT IN USE AFTER DB CHANGE

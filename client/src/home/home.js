@@ -257,10 +257,10 @@ class HomePage extends React.Component {
                     <thead>
                       <tr key="tableHeaderRow" >
                         <th className = 'userID'>ID</th>
-                        <th className = 'userName'>Nimi</th>
-                        <th className = 'userLogin'>Käyttäjätunnus</th>
-                        <th className = 'userStatus'>Käyttäjätaso</th>
-                        <th className = 'userEmail'>Sähköpostiosoite</th>
+                        <th className = 'userName'>Name</th>
+                        <th className = 'userLogin'>Username</th>
+                        <th className = 'userStatus'>User level</th>
+                        <th className = 'userEmail'>Email</th>
                       </tr>
                     </thead>
                     <tbody className = 'userDataList' key = 'd.tbody'>

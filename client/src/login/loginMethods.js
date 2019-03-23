@@ -211,6 +211,10 @@ class LoginMethods extends React.Component {
     }
   }
 
+  passwordRecovery(event) {
+    alert("NODEMAILER HERE");
+  }
+
   render() {
     
     // After login, redirect to home page
@@ -259,6 +263,15 @@ class LoginMethods extends React.Component {
                         }}
                       >
                         Log in
+                      </Button>
+                      <Button className="forgotPassword" 
+                        id="forgotPw"
+                        style={this.state.okBtnStyle}
+                        onClick={(event) => {
+                          this.passwordRecovery(event);
+                        }}
+                      >
+                        Forgot password?
                       </Button>
                     </Form>
                   </div>
