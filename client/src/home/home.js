@@ -51,7 +51,7 @@ class HomePage extends React.Component {
     // API base url address
     var apiBaseUrl;
     if(process.env.NODE_ENV === 'production') {
-      apiBaseUrl = "https://floating-fortress-36530.herokuapp.com/api/";
+      apiBaseUrl = "https://peaceful-fortress-30481.herokuapp.com/api/";
     } else {
       apiBaseUrl = "http://localhost:5000/api/";
     }
@@ -111,7 +111,7 @@ class HomePage extends React.Component {
     // API base url address
     var apiBaseUrl;
     if(process.env.NODE_ENV === 'production') {
-      apiBaseUrl = "https://floating-fortress-36530.herokuapp.com/api/";
+      apiBaseUrl = "https://peaceful-fortress-30481.herokuapp.com/api/";
     } else {
       apiBaseUrl = "http://localhost:5000/api/";
     }
@@ -172,7 +172,7 @@ class HomePage extends React.Component {
   componentDidMount() {
 
     this.getUserData();
-    this.getLoanData();
+    //this.getLoanData();
 
   }
 
@@ -212,10 +212,10 @@ class HomePage extends React.Component {
 
     // Fetch data from data object and map to a table
     const listUserData = data.map((d) => 
-        <tr key= {"row" + d.ID}>
-        <th className = 'userID' scope="row" key = 'd.ID'>{d.ID}</th>
+        <tr key= {"row" + d.userID}>
+        <th className = 'userID' scope="row" key = 'd.userID'>{d.userID}</th>
         <td className = 'userName' key = 'd.name'>{d.name}</td>
-        <td className = 'userLogin' key = 'd.login'>{d.login}</td>
+        <td className = 'userLogin' key = 'd.loginID'>{d.loginID}</td>
         <td className = 'userStatus' key = 'd.status'>{this.getStatus(d.status)}</td>
         <td className = 'userEmail' key = 'd.email'>{d.email}</td>
       </tr>

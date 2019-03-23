@@ -29,6 +29,9 @@
 
 var validationMethods = {};
 
+// non-allowed chars, separated by comma: ";, {, \, |, }, /"
+const illegalCharPattern = /^(?!.*(;|{|\||}|\\|\/)).*$/
+
 // Request validation
 validationMethods.validateRequest = function (requestBody) {
 
@@ -60,13 +63,17 @@ validationMethods.validateLogin = function (login, password) {
   let validLogin = false;
   let validPassword = false;
 
-  if(login.length > 4 && login.length < 8) {
+  // 4-16 characters with no white-space.
+  if(login.length > 3 && login.length < 17) {
 
-    let idPattern = /\d{6,7}/
-    let matchLoginId = idPattern.test(login);
-    console.log("login regex match:", matchLoginId);
+    let illegalLoginIdPattern = illegalCharPattern;
+    let loginIdNonWhiteSpacePattern = /\s/
+    let matchLoginId = illegalLoginIdPattern.test(login);
+    let matchNonWhiteSpace = loginIdNonWhiteSpacePattern.test(login);
+    console.log("login regex match:", matchLoginId, matchNonWhiteSpace);
 
-    if(matchLoginId) {
+    // negative, because if whitespace, = true! we dont want any in loginid.
+    if(!matchNonWhiteSpace && matchLoginId) {
       validLogin = true;
     } else {
       validLogin = false;
@@ -75,7 +82,7 @@ validationMethods.validateLogin = function (login, password) {
 
   if(password.length > 3 && password.length < 65) {
 
-    let pwPattern = /^(?!.*(;|{|\||}|\\)).*$/
+    let pwPattern = illegalCharPattern;
     let matchPw = pwPattern.test(password);
     console.log("password regex match:", matchPw);
 
@@ -102,17 +109,41 @@ validationMethods.validateRegister = function (userData) {
   let validLogin = false;
   let validPassword = false;
   let validEmail = false;
-  let validStatus = false;
+  // status set to true for all for now
+  let validStatus = true;
 
-  console.log(userData);
-/*
-  if(login.length > 4 && login.length < 8) {
+  console.log("userdata object:", userData);
 
-    let idPattern = /\d{6,7}/
-    let matchLoginId = idPattern.test(login);
-    console.log("login regex match:", matchLoginId);
+  let name = userData[0];
+  let login = userData[1];
+  // let status = userData[2];
+  let email = userData[3];
+  let password = userData[4];
 
-    if(matchLoginId) {
+
+  if(name.length > 4 && name.length < 100) {
+    let illegalNamePattern = /^(?!.*(\d|;|{|\||}|\\|\/)).*$/
+    let matchName = illegalNamePattern.test(name);
+    console.log("reg name regex match:", matchName);
+
+    if(matchName) {
+      validName = true;
+    } else {
+      validName = false;
+    }
+  }
+
+  // 4-16 characters with no white-space.
+  if(login.length > 3 && login.length < 17) {
+
+    let illegalLoginIdPattern = illegalCharPattern;
+    let loginIdNonWhiteSpacePattern = /\s/
+    let matchLoginId = illegalLoginIdPattern.test(login);
+    let matchNonWhiteSpace = loginIdNonWhiteSpacePattern.test(login);
+    console.log("reg login regex match:", matchLoginId, matchNonWhiteSpace);
+
+    // negative, because if whitespace, = true! we dont want any in loginid.
+    if(!matchNonWhiteSpace && matchLoginId) {
       validLogin = true;
     } else {
       validLogin = false;
@@ -120,10 +151,10 @@ validationMethods.validateRegister = function (userData) {
   }
 
   if(password.length > 3 && password.length < 65) {
-
-    let pwPattern = /^(?!.*(;|{|\||}|\\)).*$/
+    // not allowed chars in following regex: "; { \ | } /"
+    let pwPattern = illegalCharPattern;
     let matchPw = pwPattern.test(password);
-    console.log("password regex match:", matchPw);
+    console.log("reg password regex match:", matchPw);
 
     if(matchPw) {
       validPassword = true;
@@ -131,12 +162,29 @@ validationMethods.validateRegister = function (userData) {
       validPassword = false;
     }
   }
-*/
+
+  if(email.length > 5 && email.length < 100) {
+    let emailPattern = illegalCharPattern;
+    let matchEmail = emailPattern.test(email);
+    console.log("reg email regex match:", matchEmail);
+
+    if(matchEmail) {
+      validEmail = true;
+    } else {
+      validEmail = false;
+    }
+  }
+
+  
+  console.log("reg status match:", validStatus);
+
   // if all are valid, return true.
   if(validName && validLogin && validPassword && validEmail && validStatus) {
     return true;
   } else {
+    console.log("reg regex all:", validName, validLogin, validPassword, validEmail, validStatus);
     return false;
+    
   }
 };
 

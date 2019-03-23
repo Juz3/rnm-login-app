@@ -63,11 +63,10 @@ class RegisterMethods extends React.Component {
     let userEmailValid = false;
     let loginPwValid = false;
 
-    let loginIdPattern = /\d{7}/;
-    let illegalCharPattern = /^(?!.*(;|{|\||}|\\)).*$/;
-
+    const loginIdNonWhiteSpacePattern = /\s/;
+    const illegalCharPattern = /^(?!.*(;|{|\||}|\\|\/)).*$/;
     // username validation
-    if(payload.name.length > 1 && payload.name.length < 80) {
+    if(payload.name.length > 4 && payload.name.length < 100) {
 
       let matchName = illegalCharPattern.test(payload.name);
       console.log("name regex legalchars:", matchName);
@@ -80,17 +79,17 @@ class RegisterMethods extends React.Component {
     }
 
     // loginID validation
-    if(payload.login.length === 7) {
+    if(payload.login.length > 3 && payload.login.length < 17) {
       
       
-      let matchLoginId = loginIdPattern.test(payload.login);
-      console.log("register digit regex match:", matchLoginId);
+      let matchLoginIdNonWhiteSpace = loginIdNonWhiteSpacePattern.test(payload.login);
+      console.log("register digit regex match:", matchLoginIdNonWhiteSpace);
 
       
       let matchLoginIdIllegal = illegalCharPattern.test(payload.login);
       console.log("register loginID legalchars:", matchLoginIdIllegal);
 
-      if(matchLoginId && matchLoginIdIllegal) {
+      if(!matchLoginIdNonWhiteSpace && matchLoginIdIllegal) {
         loginIdValid = true;
       } else {
         loginIdValid = false;
@@ -98,7 +97,7 @@ class RegisterMethods extends React.Component {
     }
     
     // email address validation
-    if(payload.email.length > 5 && payload.email.length < 80) {
+    if(payload.email.length > 5 && payload.email.length < 100) {
 
       let mailPattern = /^[A-Z0-9._%+-ÅÄÖ]+@[A-Z0-9.-ÅÄÖ]+\.[A-Z]{2,}$/i
 

@@ -159,7 +159,18 @@ export default class Navigation extends React.Component {
           Sign out
         </Button>
     );
-
+/* LINKS NOT IN USE AFTER DB CHANGE
+  <NavItem style={this.state.searchStyle}>
+    <Link className="nav-link" to="/search">
+        Search
+    </Link>
+  </NavItem>
+  <NavItem style={this.state.storageStyle}>
+    <Link className="nav-link" to="/storage">
+        Browse
+      </Link>
+  </NavItem>
+*/
     return (
 
       <div>
@@ -196,21 +207,17 @@ export default class Navigation extends React.Component {
                   Log in
               </Link>
             </NavItem>
+            <NavItem style={this.state.loginStyle}>
+              <Link className="nav-link" to="/register">
+                  Register
+              </Link>
+            </NavItem>
             <NavItem style={this.state.homeStyle}>
               <Link className="nav-link" to="/home">
                   Home
               </Link>
             </NavItem>
-            <NavItem style={this.state.searchStyle}>
-              <Link className="nav-link" to="/search">
-                  Search
-              </Link>
-            </NavItem>
-            <NavItem style={this.state.storageStyle}>
-              <Link className="nav-link" to="/storage">
-                  Browse
-                </Link>
-            </NavItem>
+
             <NavItem>
               <Link className="nav-link" to="/about">
                   About

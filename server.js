@@ -60,12 +60,12 @@ function verifyToken(req, res, next) {
       bearerHeader = req.headers['authorization'];
   }
   // log value of bearerheader
-  console.log('authorization header (Bearer + jwt)', bearerHeader);
+  console.log('authorization header (Bearer + jwt) 1', bearerHeader);
   // check if bearer is undefined
   if(typeof bearerHeader !== 'undefined') {
     //console.log("Bearer header found, splitting");
     // log value of bearerheader
-    console.log('authorization header (Bearer + jwt)', bearerHeader);
+    console.log('authorization header (Bearer + jwt) 2', bearerHeader);
     // Split bearer header at space
     var bearer = bearerHeader.split(' ');
     // get token from array
@@ -84,7 +84,6 @@ function verifyToken(req, res, next) {
 }
 
 // route for user registration
-// VERIFY TOKEN NOT WORKING HERE; INVESTIGATE
 router.post('/register', routeFile.register);
 
 // route for login
@@ -93,7 +92,9 @@ router.post('/login', routeFile.login);
 // homepage get routes
 // *this is a Protected route*
 router.get('/home', verifyToken, routeFile.getHome);
+/*
 router.get('/homeloan', verifyToken, routeFile.getLoan);
+*/
 
 // storage get route
 // *this is a Protected route*

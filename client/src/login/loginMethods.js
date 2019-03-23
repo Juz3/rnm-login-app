@@ -76,18 +76,19 @@ class LoginMethods extends React.Component {
     let loginIdValid = false;
     let loginPwValid = false;
 
-    // loginID
-    if(login.length > 5 && login.length < 8) {
-      
-      let idPattern = /\d{6,7}/
-      let matchLoginId = idPattern.test(login);
-      console.log("login regex match:", matchLoginId);
+    const loginIdNonWhiteSpacePattern = /\s/;
+    const illegalCharPattern = /^(?!.*(;|{|\||}|\\|\/)).*$/;
 
-      let illegalPattern = /^(?!.*(;|{|\||}|\\)).*$/
-      let matchLoginIdIllegal = illegalPattern.test(login);
+    // loginID
+    if(login.length > 3 && login.length < 8) {
+      
+      let matchLoginIdNonWhiteSpace = loginIdNonWhiteSpacePattern.test(login);
+      console.log("login regex match:", matchLoginIdNonWhiteSpace);
+
+      let matchLoginIdIllegal = illegalCharPattern.test(login);
       console.log("login illegal regex match:", matchLoginIdIllegal);
 
-      if(matchLoginId && matchLoginIdIllegal) {
+      if(!matchLoginIdNonWhiteSpace && matchLoginIdIllegal) {
         loginIdValid = true;
       } else {
         loginIdValid = false;
@@ -97,7 +98,7 @@ class LoginMethods extends React.Component {
     // Password
     if(password.length > 3 && password.length <= 64) {
       
-      let pwPattern = /^(?!.*(;|{|\||}|\\)).*$/
+      let pwPattern = illegalCharPattern;
 
       let matchPw = pwPattern.test(password);
 

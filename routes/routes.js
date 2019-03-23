@@ -85,13 +85,13 @@ exports.register = (req, res) => {
       bcrypt.hash(req.body.password, saltRounds, (err, bcryptedPassword) => {
         var user = {
           "name":req.body.name,
-          "login":req.body.login,
+          "loginID":req.body.login,
           "status":req.body.status,
           "email":req.body.email,
           "password":bcryptedPassword
         }
         // New user insert query
-        sqlCon.connection.query('INSERT INTO user SET?', [user], 
+        sqlCon.connection.query('INSERT INTO rnm_app_users SET?', [user], 
           (error, results, fields) => {
           if(error) {
             console.log("Error occurred(loginroute insert query)", error);
@@ -114,6 +114,7 @@ exports.register = (req, res) => {
         });
       });
     } else {
+      console.log("validate registration false");
       console.log("Registration denied due to error in register validation.");
     }
   } else {
@@ -161,7 +162,7 @@ exports.login = (req, res) => {
 
   
       // Login user select query, comparing login ID to User database
-      sqlCon.connection.query('SELECT * FROM user WHERE login = ?', [loginID], 
+      sqlCon.connection.query('SELECT * FROM rnm_app_users WHERE loginID = ?', [loginID], 
         (error, results, fields) => {
   
         // if there's an error in login id query
@@ -182,7 +183,7 @@ exports.login = (req, res) => {
               if(doesItMatch) {
                 // create jwt payload
                 const payload = { 
-                  userID: results[0].ID,
+                  userID: results[0].userID,
                   name: results[0].name, 
                   login: results[0].loginID, 
                   status: results[0].status 
@@ -255,7 +256,7 @@ exports.getHome = (req, res) => {
       var userID = authData.userID;
 
       //homepage select query, returns user data
-      sqlCon.connection.query('SELECT * FROM user WHERE ID = ?', [userID],
+      sqlCon.connection.query('SELECT * FROM rnm_app_users WHERE userID = ?', [userID],
       (error, results, fields) => {
         // error will be an Error if one occurred during the query
         // results will contain the results of the query
@@ -287,6 +288,7 @@ exports.getHome = (req, res) => {
 }
 
 // GET Home route
+/*
 exports.getLoan = (req, res) => {
 
   jwt.verify(req.token, keys.jwtSecret, (err, authData) => {
@@ -342,6 +344,7 @@ exports.getLoan = (req, res) => {
     }
   });
 }
+*/
 
 // Get Storage route 
 // if JWT is valid, send sql query to list all items from table 'Storage'
