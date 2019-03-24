@@ -109,6 +109,35 @@ html {
     color: #fff;
 }
 
+.loginBtnList {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.submitBtn-login, .submitBtn-register {
+    color: #fff;
+    background: #191a1d;
+    text-align: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.pwRecoveryBtn {
+    color: #fff;
+    background: #191a1d;
+    text-align: center;
+    flex-direction: column;
+    font-size: 10pt;
+    padding: 5px 5px;
+}
+
+.registerModal {
+    background: #26272b;
+    color: #fff;
+    text-align: center;
+}
+
+
 @media (max-width: 575px) {
     .storageForm {
         width: 300px !important;

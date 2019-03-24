@@ -34,7 +34,11 @@ import {Button,
   Form, 
   FormGroup, 
   Input, 
-  Label } from 'reactstrap';
+  Label,
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter } from 'reactstrap';
 
 import { Redirect } from 'react-router-dom';
 
@@ -49,8 +53,18 @@ class RegisterMethods extends React.Component {
         //statusRole: 1,
         email: '',
         password: '',
-        newUserCreated: false
+        newUserCreated: false,
+        modal: false,
+        registerModalContent: 'placeholdervalue'
     };
+
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   // client side registration validation function before sending to server
@@ -171,11 +185,13 @@ class RegisterMethods extends React.Component {
           
           if(response.data.code === 200) {
             console.log("registration successful");
-            alert("Uusi käyttäjä luotu");
 
             self.setState({
+              modal: true,
+              registerModalContent: 'User created successfully',
               newUserCreated:true
             });
+            alert("New user created. modal?");
           } else {
             console.log("error occurred: ",response.data.code);
           }
@@ -186,7 +202,11 @@ class RegisterMethods extends React.Component {
     } else {
       // error before post
       console.log("ValidateRegister returned false, check validation");
-      alert("Tarkista tiedot. Katso ohje");
+      
+      self.setState({
+        modal: true,
+        registerModalContent: 'Invalid input. Check requirements'
+      });
     }
   }
 
@@ -205,9 +225,9 @@ class RegisterMethods extends React.Component {
                   <div className="registerForm">
                     <Form>
                       <FormGroup>
-                        <Label for="Name">First- and lastname</Label>
+                        <Label for="Name">First and last name</Label>
                         <Input type="text" name="username" id="username" 
-                        placeholder="First- and lastname" 
+                        placeholder="First and last name" 
                         onChange = {(event) => 
                           this.setState({
                             username:event.target.value
@@ -227,7 +247,7 @@ class RegisterMethods extends React.Component {
                       <FormGroup>
                         <Label for="email">Email</Label>
                         <Input type="email" name="email" id="email" 
-                        placeholder="mail@mail.xyz" 
+                        placeholder="Email address" 
                         onChange = {(event) => 
                           this.setState({
                             email:event.target.value
@@ -246,11 +266,19 @@ class RegisterMethods extends React.Component {
                       </FormGroup>
                       <Button className="submitBtn-register" 
                         onClick={(event) => 
-                          this.handleClick(event)} 
-                        style={this.state.okBtnStyle}>
+                          this.handleClick(event)}>
                           Register
                       </Button>
                     </Form>
+                    <Modal isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+                      <ModalBody className="registerModal">
+                        {this.state.registerModalContent}
+                      </ModalBody>
+                      <ModalFooter className="registerModal">
+                        <Button className="submitBtn-register" onClick={this.toggleModal}>OK</Button>{' '}
+                        <Button className="submitBtn-register" onClick={this.toggleModal}>Cancel</Button>
+                      </ModalFooter>
+                    </Modal>
                   </div>
                 </Row>
               </Container>
@@ -260,16 +288,5 @@ class RegisterMethods extends React.Component {
     }
   }
 }
-
-/*
-  Removed form group for setting user status at registration. status forced at 1  
-
-  <FormGroup>
-    <Label for="Status">Status</Label>
-    <Input type="text" name="statusRole" id="statusRole" 
-    placeholder="1 = user, 2 = manager, 3 = admin" 
-    onChange = {(event,newValue) => this.setState({status:newValue})}/>
-  </FormGroup>
-*/
 
 export default RegisterMethods;

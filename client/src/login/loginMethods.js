@@ -50,7 +50,8 @@ class LoginMethods extends React.Component {
         password: '',
         isLogged: false,
         authToken: '',
-        userID: ''
+        userID: '',
+
     };
   }
 
@@ -255,25 +256,32 @@ class LoginMethods extends React.Component {
                           } 
                         />
                       </FormGroup>
-                      <Button className="submitBtn-login" 
+
+                    </Form>
+                    <ul className="loginBtnList">
+                      <li>
+                      <Button 
+                        className="submitBtn-login" 
                         id="submit-login" 
-                        style={this.state.okBtnStyle}
+                        
                         onClick={(event) => {
                           this.handleClick(event);
-                        }}
-                      >
+                        }}>                        
                         Log in
                       </Button>
-                      <Button className="forgotPassword" 
-                        id="forgotPw"
-                        style={this.state.okBtnStyle}
-                        onClick={(event) => {
-                          this.passwordRecovery(event);
-                        }}
-                      >
-                        Forgot password?
-                      </Button>
-                    </Form>
+                      </li>
+                      <li>
+                        <Button 
+                          className="pwRecoveryBtn" 
+                          id="forgotPassword"
+                          
+                          onClick={(event) => {
+                            this.passwordRecovery(event);
+                          }}>
+                          Forgot password?
+                        </Button>
+                      </li>
+                    </ul> 
                   </div>
                 </Row>
               </Container>

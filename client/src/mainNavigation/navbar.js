@@ -60,6 +60,12 @@ export default class Navigation extends React.Component {
       },
       homeStyle: {
         display: 'none'
+      },
+      titleStyle: {
+        position: 'absolute',
+        paddingLeft: '0px',
+        left: '50%',
+        transform: 'translatex(-50%)'
       }
     };
   }
@@ -176,23 +182,23 @@ export default class Navigation extends React.Component {
       <div>
         <div className="topNav">
           <Navbar expand="md">
-            <Nav className="mr-auto" navbar>
+            <Nav className="mr-auto">
               <NavItem className="logoImg">
                 <Link to="/home">
                   <img alt="logoimg" src={require("../icon.png") }/>
                 </Link>
               </NavItem>
             </Nav>
-            <Nav className="titleLink" navbar>
+            <Nav className="titleLink">
               <NavItem className="titleLink">
                 <Link className="navbar-brand" to="/home">
-                  <p>
-                    React + Node.js + MySQL (+heroku) login application
+                  <p style={this.state.titleStyle}>
+                    RNM login web application
                   </p>
                 </Link>
               </NavItem>
             </Nav>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ml-auto">
               <NavItem className="logOutNav">
                 <LogOutButton />
               </NavItem>

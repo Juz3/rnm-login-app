@@ -64,11 +64,6 @@ class LoginPage extends React.Component {
       buttonLabel:'Register',
       isLoggedIn:false,
       isRegisterPressed:false,
-      okBtnStyle : {
-        color: 'rgb(39, 167, 71)',
-        background: '#191a1d',
-        textAlign: 'center'
-      }
     }
   }
 
