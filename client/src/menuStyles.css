@@ -33,14 +33,17 @@ html {
 }
 .registerForm {
     color: #fff;
-    width: 600px;
+    width: 400px;
     text-align: center;
-
 }
+.registerForm Label {
+    margin: 5px 0px 5px 0px;
+}
+
 .loginForm {
     color: #fff;
     text-align: center;
-    width: 600px;
+    width: 400px;
 
 }
 
@@ -137,39 +140,101 @@ html {
     text-align: center;
 }
 
+.registerModal Button {
+    background: #191a1d;
+    color: #fff;
+    text-align: center;
+    margin-right: 45%;
+}
+
+.regTooltip {
+    display: default;
+}
+
+.regTooltip > .tooltip-inner {
+    font-size: 10pt;
+    margin: 0px 0px 5px 0px;
+    color: #fff;
+    background: #19191b;
+}
+    
+.regTooltip > .arrow {
+    display: none;
+}
+
+.regGuidePara {
+    font-size: 10pt;
+    margin: 0px 0px 5px 0px;
+    display: default;
+    color: #e7dabe;
+}
 
 @media (max-width: 575px) {
-    .storageForm {
+    .registerForm {
         width: 300px !important;
     }
-    .searchForm {
+    .loginForm {
         width: 300px !important;
+    }
+    .regGuidePara {
+        display: default;
+    }
+    .storageForm {
+        width: 300px;
+    }
+    .searchForm {
+        width: 300px;
     }
 }
 
 @media (max-width: 767px) {
-    .storageForm {
-        width: 400px !important;
+
+/*     .registerForm {
+        width: 350px;
     }
-    .searchForm {
-        width: 400px !important;
-    }
+    .loginForm {
+        width: 350px;
+    } */
 }
 
 @media (max-width: 991px) {
+    .regTooltip {
+        display: none;
+    }
+    .regGuidePara {
+        display: default;
+    }
+    .registerForm {
+        width: 350px;
+    }
+    .loginForm {
+        width: 350px;
+    }
     .storageForm {
-        width: 600px !important;
+        width: 500px;
     }
     .searchForm {
-        width: 600px !important;
+        width: 500px;
     }
 }
 
 @media (max-width: 1199px) {
+    .regGuidePara {
+        display: default;
+    }
     .storageForm {
-        width: 600px !important;
+        width: 600px;
     }
     .searchForm {
-        width: 600px !important;
+        width: 600px;
     }
+}
+
+/* MIN-WIDTH */
+@media (min-width: 992px) {
+
+    .regGuidePara {
+        display: none;
+    }
+
 }

@@ -38,7 +38,9 @@ import {Button,
   Modal, 
   ModalHeader, 
   ModalBody, 
-  ModalFooter } from 'reactstrap';
+  ModalFooter,
+  Tooltip,
+  UncontrolledTooltip } from 'reactstrap';
 
 import { Redirect } from 'react-router-dom';
 
@@ -77,8 +79,11 @@ class RegisterMethods extends React.Component {
     let userEmailValid = false;
     let loginPwValid = false;
 
+    // for no whitespace in login id
     const loginIdNonWhiteSpacePattern = /\s/;
+    // for illegal characters, used in many places
     const illegalCharPattern = /^(?!.*(;|{|\||}|\\|\/)).*$/;
+
     // username validation
     if(payload.name.length > 4 && payload.name.length < 100) {
 
@@ -226,43 +231,63 @@ class RegisterMethods extends React.Component {
                     <Form>
                       <FormGroup>
                         <Label for="Name">First and last name</Label>
+                        <p className="regGuidePara">4-100 characters, no numbers</p>
                         <Input type="text" name="username" id="username" 
                         placeholder="First and last name" 
                         onChange = {(event) => 
                           this.setState({
                             username:event.target.value
                           })
-                        }/>
+                        }>
+                        </Input>
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="username">
+                          4-100 characters, no numbers
+                        </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="LoginID">Username</Label>
+                        <p className="regGuidePara">4-16 characters, no white space</p>
                         <Input type="text" name="loginID" id="loginID" 
                         placeholder="Username" 
                         onChange = {(event) => 
                           this.setState({
                               loginID:event.target.value
                             })
-                          }/>
+                          }>
+                        </Input>
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="loginID">
+                        4-16 characters, no white space
+                        </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="email">Email</Label>
+                        <p className="regGuidePara">6-100 characters, something@some.domain</p>
                         <Input type="email" name="email" id="email" 
                         placeholder="Email address" 
                         onChange = {(event) => 
                           this.setState({
                             email:event.target.value
                           })
-                        }/>
+                        }>
+                        </Input>
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="email">
+                          6-100 characters, something@some.domain
+                        </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="pw">Password</Label>
+                        <p className="regGuidePara">4-64 characters</p>
                         <Input type="password" name="password" id="password" 
                         placeholder="Password" 
                         onChange = {(event) => 
                           this.setState({
                             password:event.target.value
                           })
-                        }/>
+                        }>
+                        </Input>
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="password">
+                          4-64 characters
+                        </UncontrolledTooltip>
                       </FormGroup>
                       <Button className="submitBtn-register" 
                         onClick={(event) => 
@@ -270,13 +295,12 @@ class RegisterMethods extends React.Component {
                           Register
                       </Button>
                     </Form>
-                    <Modal isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+                    <Modal size="sm" centered fade isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
                       <ModalBody className="registerModal">
                         {this.state.registerModalContent}
                       </ModalBody>
                       <ModalFooter className="registerModal">
-                        <Button className="submitBtn-register" onClick={this.toggleModal}>OK</Button>{' '}
-                        <Button className="submitBtn-register" onClick={this.toggleModal}>Cancel</Button>
+                        <Button onClick={this.toggleModal}>OK</Button>
                       </ModalFooter>
                     </Modal>
                   </div>

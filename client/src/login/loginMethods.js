@@ -278,7 +278,7 @@ class LoginMethods extends React.Component {
                           onClick={(event) => {
                             this.passwordRecovery(event);
                           }}>
-                          Forgot password?
+                          Forgot password
                         </Button>
                       </li>
                     </ul> 

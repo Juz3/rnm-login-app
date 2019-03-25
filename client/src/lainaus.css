@@ -239,7 +239,7 @@ body {
 /* responsive design */
 @media (max-width: 575px) {
     .topNavLinks {
-        display: none;
+        font-size: 12pt;
     }
 
 }
