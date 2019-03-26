@@ -31,12 +31,12 @@ html {
     width: 600px !important;
     text-align: center;
 }
-.registerForm {
+.signupForm {
     color: #fff;
     width: 400px;
     text-align: center;
 }
-.registerForm Label {
+.signupForm Label {
     margin: 5px 0px 5px 0px;
 }
 
@@ -117,7 +117,7 @@ html {
     padding-left: 0px;
 }
 
-.submitBtn-login, .submitBtn-register {
+.submitBtn-login, .submitBtn-signup {
     color: #fff;
     background: #191a1d;
     text-align: center;
@@ -134,17 +134,17 @@ html {
     padding: 5px 5px;
 }
 
-.registerModal {
+.signupModal {
     background: #26272b;
     color: #fff;
     text-align: center;
 }
 
-.registerModal Button {
+.signupModal Button {
     background: #191a1d;
     color: #fff;
     text-align: center;
-    margin-right: 45%;
+    margin-right: 40%;
 }
 
 .regTooltip {
@@ -155,7 +155,7 @@ html {
     font-size: 10pt;
     margin: 0px 0px 5px 0px;
     color: #fff;
-    background: #19191b;
+    background: #1b1a19;
 }
     
 .regTooltip > .arrow {
@@ -166,11 +166,11 @@ html {
     font-size: 10pt;
     margin: 0px 0px 5px 0px;
     display: default;
-    color: #e7dabe;
+    color: #e7bebe;
 }
 
 @media (max-width: 575px) {
-    .registerForm {
+    .signupForm {
         width: 300px !important;
     }
     .loginForm {
@@ -189,7 +189,7 @@ html {
 
 @media (max-width: 767px) {
 
-/*     .registerForm {
+/*     .signupForm {
         width: 350px;
     }
     .loginForm {
@@ -204,7 +204,7 @@ html {
     .regGuidePara {
         display: default;
     }
-    .registerForm {
+    .signupForm {
         width: 350px;
     }
     .loginForm {

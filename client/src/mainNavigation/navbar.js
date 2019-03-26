@@ -214,8 +214,8 @@ export default class Navigation extends React.Component {
               </Link>
             </NavItem>
             <NavItem style={this.state.loginStyle}>
-              <Link className="nav-link" to="/register">
-                  Register
+              <Link className="nav-link" to="/signup">
+                  Sign up
               </Link>
             </NavItem>
             <NavItem style={this.state.homeStyle}>

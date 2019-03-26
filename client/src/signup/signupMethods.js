@@ -1,5 +1,5 @@
  /**
- *  <registerMethods.js>
+ *  <signupMethods.js>
  *
  *  Copyright information
  *
@@ -46,7 +46,7 @@ import { Redirect } from 'react-router-dom';
 
 import LoginMethods from '../login/loginMethods';
 
-class RegisterMethods extends React.Component {
+class SignupMethods extends React.Component {
   constructor(props) {
     super(props);
     this.state= { 
@@ -57,7 +57,10 @@ class RegisterMethods extends React.Component {
         password: '',
         newUserCreated: false,
         modal: false,
-        registerModalContent: 'placeholdervalue'
+        signupModalContent: 'placeholdervalue',
+        toggleModalClicked: 0,
+        regGuideStyle: {},
+        toolTipStyle: {}
     };
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -67,10 +70,26 @@ class RegisterMethods extends React.Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+    this.setState({
+      toggleModalClicked: this.state.toggleModalClicked + 1
+    });
+    if(this.state.toggleModalClicked >= 1) {
+      this.setState({
+        regGuideStyle: {
+          color:'#ff8742',
+          fontWeight: 'bold'
+        },
+        toolTipStyle: {
+          color:'#ff8742',
+          fontWeight: 'bold'
+        }
+      })
+    }
+    console.log("tmc", this.state.toggleModalClicked);
   }
 
-  // client side registration validation function before sending to server
-  validateRegister(payload) {
+  // client side signup validation function before sending to server
+  validateSignup(payload) {
 
     console.log("payload name:", payload.name)
 
@@ -102,11 +121,11 @@ class RegisterMethods extends React.Component {
       
       
       let matchLoginIdNonWhiteSpace = loginIdNonWhiteSpacePattern.test(payload.login);
-      console.log("register digit regex match:", matchLoginIdNonWhiteSpace);
+      console.log("signup digit regex match:", matchLoginIdNonWhiteSpace);
 
       
       let matchLoginIdIllegal = illegalCharPattern.test(payload.login);
-      console.log("register loginID legalchars:", matchLoginIdIllegal);
+      console.log("signup loginID legalchars:", matchLoginIdIllegal);
 
       if(!matchLoginIdNonWhiteSpace && matchLoginIdIllegal) {
         loginIdValid = true;
@@ -147,14 +166,14 @@ class RegisterMethods extends React.Component {
     }
     
 
-    // When data is valid, return true and continue register post.
+    // When data is valid, return true and continue signup post.
     if(userNameValid && loginIdValid && userEmailValid && loginPwValid) {
       
       return true;
 
     } else {
 
-      console.log("Registration data is invalid");
+      console.log("signup data is invalid");
       return false;
     }
   }
@@ -181,19 +200,19 @@ class RegisterMethods extends React.Component {
       "password": self.state.password
     }
 
-    if(this.validateRegister(payload)) {
+    if(this.validateSignup(payload)) {
 
       // create http post request
-      axios.post(apiBaseUrl+'register', payload)
+      axios.post(apiBaseUrl+'signup', payload)
       .then(function (response) {
           //console.log(response);
           
           if(response.data.code === 200) {
-            console.log("registration successful");
+            console.log("signup successful");
 
             self.setState({
               modal: true,
-              registerModalContent: 'User created successfully',
+              signupModalContent: 'User created successfully',
               newUserCreated:true
             });
             alert("New user created. modal?");
@@ -206,13 +225,17 @@ class RegisterMethods extends React.Component {
       });
     } else {
       // error before post
-      console.log("ValidateRegister returned false, check validation");
+      console.log("ValidateSignup returned false, check validation");
       
       self.setState({
         modal: true,
-        registerModalContent: 'Invalid input. Check requirements'
+        signupModalContent: 'Invalid input. Check requirements'
       });
     }
+  }
+
+  showRequirements(event) {
+    console.log("REQUIREMENTS SHOW");
   }
 
   render() {
@@ -225,14 +248,14 @@ class RegisterMethods extends React.Component {
       return (
         <div> 
           <div className="mainContainer">
-              <Container className="registerForm">
-                <Row className="registerForm">
-                  <div className="registerForm">
+              <Container className="signupForm">
+                <Row className="signupForm">
+                  <div className="signupForm">
                     <Form>
                       <FormGroup>
                         <Label for="Name">First and last name</Label>
-                        <p className="regGuidePara">4-100 characters, no numbers</p>
-                        <Input type="text" name="username" id="username" 
+                        <p className="regGuidePara" style={this.state.regGuideStyle}>4-100 characters, no numbers</p>
+                        <Input type="text" name="name" id="name" 
                         placeholder="First and last name" 
                         onChange = {(event) => 
                           this.setState({
@@ -240,13 +263,13 @@ class RegisterMethods extends React.Component {
                           })
                         }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="username">
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="name" style={this.state.toolTipStyle}>
                           4-100 characters, no numbers
                         </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="LoginID">Username</Label>
-                        <p className="regGuidePara">4-16 characters, no white space</p>
+                        <p className="regGuidePara" style={this.state.regGuideStyle}>4-16 characters, no white space</p>
                         <Input type="text" name="loginID" id="loginID" 
                         placeholder="Username" 
                         onChange = {(event) => 
@@ -255,13 +278,13 @@ class RegisterMethods extends React.Component {
                             })
                           }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="loginID">
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="loginID" style={this.state.toolTipStyle}>
                         4-16 characters, no white space
                         </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="email">Email</Label>
-                        <p className="regGuidePara">6-100 characters, something@some.domain</p>
+                        <p className="regGuidePara" style={this.state.regGuideStyle}>6-100 characters, something@some.domain</p>
                         <Input type="email" name="email" id="email" 
                         placeholder="Email address" 
                         onChange = {(event) => 
@@ -270,13 +293,13 @@ class RegisterMethods extends React.Component {
                           })
                         }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="email">
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="email" style={this.state.toolTipStyle}>
                           6-100 characters, something@some.domain
                         </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="pw">Password</Label>
-                        <p className="regGuidePara">4-64 characters</p>
+                        <p className="regGuidePara" style={this.state.regGuideStyle}>4-64 characters</p>
                         <Input type="password" name="password" id="password" 
                         placeholder="Password" 
                         onChange = {(event) => 
@@ -285,21 +308,21 @@ class RegisterMethods extends React.Component {
                           })
                         }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="password">
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="password" style={this.state.toolTipStyle}>
                           4-64 characters
                         </UncontrolledTooltip>
                       </FormGroup>
-                      <Button className="submitBtn-register" 
+                      <Button className="submitBtn-signup" 
                         onClick={(event) => 
                           this.handleClick(event)}>
-                          Register
+                          Sign up
                       </Button>
                     </Form>
                     <Modal size="sm" centered fade isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
-                      <ModalBody className="registerModal">
-                        {this.state.registerModalContent}
+                      <ModalBody className="signupModal">
+                        {this.state.signupModalContent}
                       </ModalBody>
-                      <ModalFooter className="registerModal">
+                      <ModalFooter className="signupModal">
                         <Button onClick={this.toggleModal}>OK</Button>
                       </ModalFooter>
                     </Modal>
@@ -313,4 +336,4 @@ class RegisterMethods extends React.Component {
   }
 }
 
-export default RegisterMethods;
+export default SignupMethods;

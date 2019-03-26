@@ -84,7 +84,7 @@ function verifyToken(req, res, next) {
 }
 
 // route for user registration
-router.post('/register', routeFile.register);
+router.post('/signup', routeFile.signup);
 
 // route for login
 router.post('/login', routeFile.login);

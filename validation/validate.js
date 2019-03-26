@@ -102,8 +102,8 @@ validationMethods.validateLogin = function (login, password) {
 };
 
 
-// Register validation
-validationMethods.validateRegister = function (userData) {
+// Signup validation
+validationMethods.validateSignup = function (userData) {
   //-----codehere------
   let validName = false;
   let validLogin = false;

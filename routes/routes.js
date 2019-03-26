@@ -51,8 +51,8 @@ sqlCon.connection.connect((err, res) => {
   }
 });
 
-// USER REGISTRATION
-exports.register = (req, res) => {
+// USER SIGN UP
+exports.signup = (req, res) => {
 
   
   let userData = [
@@ -73,14 +73,14 @@ exports.register = (req, res) => {
     requestOkay = false;
   }
 
-  //if(requestOkay === true && validationFile.data.validateRegister(req.body)) {
+  //if(requestOkay === true && validationFile.data.validateSignup(req.body)) {
   if(requestOkay === true && 
     typeof(req.body.name) !== "undefined" && 
     typeof(req.body.login) !== "undefined" && 
     typeof(req.body.password) !== "undefined" &&
     typeof(req.body.status) !== "undefined") {
     // validate login data, continue if true.
-    if(validationFile.data.validateRegister(userData)) {
+    if(validationFile.data.validateSignup(userData)) {
       // Bcrypt hash function, encrypt password and add user to database
       bcrypt.hash(req.body.password, saltRounds, (err, bcryptedPassword) => {
         var user = {
@@ -104,21 +104,21 @@ exports.register = (req, res) => {
           } else {
             //console.log('query results: ', results);
             // Send response (OK)
-            console.log("User registered successfully");
+            console.log("User Signed up successfully");
             
             res.send({
               "code":200,
-              "success":"User registered successfully"
+              "success":"User Signed up successfully"
             });
           }
         });
       });
     } else {
-      console.log("validate registration false");
-      console.log("Registration denied due to error in register validation.");
+      console.log("validate Sign up false");
+      console.log("Sign up denied due to error in sign up validation.");
     }
   } else {
-    console.log("Invalid request, registration denied");
+    console.log("Invalid request, Sign up denied");
     res.sendStatus(403);
   }
 }
