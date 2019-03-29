@@ -41,7 +41,7 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-class StorageMethods extends React.Component {
+class AddToStorage extends React.Component {
   constructor(props) {
     super(props);
     this.state= { 
@@ -218,4 +218,4 @@ class StorageMethods extends React.Component {
   }
 }
 
-export default StorageMethods;
+export default AddToStorage;

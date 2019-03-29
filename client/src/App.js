@@ -8,7 +8,7 @@ import HomePage from './home/home';
 import StoragePage from './storage/';
 import Search from './search/search';
 import AboutPage from './about/';
-import SignupPage from './signup/signupMethods';
+import Signup from './signup/signup';
 
 // css imports - rework these into sane css structure
 import './lainaus.css';
@@ -24,7 +24,7 @@ class App extends Component {
           <Navigation />
           <div className="container">
             <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/signup" component={SignupPage} />
+            <Route exact path="/signup" component={Signup} />
             {/*<Route exact path="/search" component={Search} />*/}
             <Route exact path="/home" component={HomePage} />
             {/*<Route exact path="/storage" component={StoragePage} />*/}

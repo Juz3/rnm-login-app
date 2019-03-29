@@ -44,9 +44,9 @@ import {Button,
 
 import { Redirect } from 'react-router-dom';
 
-import LoginMethods from '../login/loginMethods';
+import Login from '../login/login';
 
-class SignupMethods extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state= { 
@@ -398,4 +398,4 @@ class SignupMethods extends React.Component {
   }
 }
 
-export default SignupMethods;
+export default Signup;

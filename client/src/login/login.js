@@ -40,7 +40,7 @@ import {
   Label
 } from 'reactstrap';
 
-class LoginMethods extends React.Component {
+class Login extends React.Component {
 
   constructor(props) {
     super(props);
@@ -81,7 +81,7 @@ class LoginMethods extends React.Component {
     const illegalCharPattern = /^(?!.*(;|{|\||}|\\|\/)).*$/;
 
     // loginID
-    if(login.length > 3 && login.length < 8) {
+    if(login.length > 3 && login.length < 17) {
       
       let matchLoginIdNonWhiteSpace = loginIdNonWhiteSpacePattern.test(login);
       console.log("login regex match:", matchLoginIdNonWhiteSpace);
@@ -294,4 +294,4 @@ class LoginMethods extends React.Component {
   }
 }
 
-export default LoginMethods;
+export default Login;

@@ -181,16 +181,16 @@ class HomePage extends React.Component {
    */
   getStatus(status) {
     // admin user status: 3
-    const admin = "Ylläpito"
+    const admin = "Adminstrator"
 
     // manager user status: 2
-    const manager = "Esimies"
+    const manager = "Supervisor"
     
     // normal user status: 1
-    const normalUser = "Peruskäyttäjä"
+    const normalUser = "Basic User"
 
     // removed user status: 0
-    const removedUser = "Poistettu käyttäjä"
+    const removedUser = "Removed User (No access)"
 
     if(status === 3) {
       return admin;

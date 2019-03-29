@@ -29,7 +29,7 @@ import React from 'react';
 
 import { Button } from 'reactstrap';
 
-import LoginMethods from './loginMethods';
+import Login from './login';
 // import RegisterMethods from '../register/registerMethods';
 
 const okBtnStyle = {
@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
 
   componentWillMount() {
     var loginscreen = [];
-    loginscreen.push(<LoginMethods key="loginMethods" 
+    loginscreen.push(<Login key="loginMethods" 
       parentContext={this} 
       appContext={this.props.parentContext}/>
     );
