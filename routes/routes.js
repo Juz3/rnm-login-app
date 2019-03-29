@@ -51,6 +51,88 @@ sqlCon.connection.connect((err, res) => {
   }
 });
 
+exports.checkSignupValid = (req, res) => {
+
+
+  let userData = [
+    req.body.name,
+    req.body.login,
+    req.body.status,
+    req.body.email,
+    req.body.password
+  ]
+
+  let requestOkay = false;
+  // validate request, continue if true.
+  if(validationFile.data.validateRequest(req.body)) {
+    console.log("validate request true");
+    requestOkay = true;
+  } else {
+    console.log("bad request, access forbidden");
+    requestOkay = false;
+  }
+
+  //if(requestOkay === true && validationFile.data.validateSignup(req.body)) {
+  if(requestOkay === true && 
+    typeof(req.body.name) !== "undefined" && 
+    typeof(req.body.login) !== "undefined" && 
+    typeof(req.body.password) !== "undefined" &&
+    typeof(req.body.status) !== "undefined") {
+    // validate login data, continue if true.
+    if(validationFile.data.validateSignup(userData)) {
+
+      // Check if given username is already taken
+      console.log("username: ", req.body.login);
+      sqlCon.connection.query('SELECT * FROM rnm_app_users WHERE loginID = ?', [req.body.login],
+      (error, results, fields) => {
+
+        if(error) {
+          console.log("Error occurred(signup-select username query)", error);
+          // Code 400 : http code for bad request
+          // Code 200 : http code for successful request
+          // Send response
+          res.send({
+            "status":400,
+            "failed":"Error occurred"
+          })
+        } else {
+          console.log('signup-select username query completed', results)
+          // Send response
+
+          if(results.length !== 0) {
+            // if given username does already exist
+            res.send(
+              JSON.stringify({
+                "status": 204, 
+                "error": null, 
+                "duplicateUsernameSearch": results,
+                "duplicateNote": "Username is already in use"
+              })
+            );
+          } else {
+            res.send(
+              JSON.stringify({
+                "status": 200, 
+                "error": null, 
+                "dupeResultLength": results.length
+                /* "userID": authData.userID */
+              })
+            );
+          }
+        }
+      });
+
+    } else {
+      console.log("validate Sign up false");
+      console.log("Sign up denied due to error in sign up validation.");
+    }
+  } else {
+    console.log("Invalid request, Sign up denied");
+    res.sendStatus(403);
+  }
+
+}
+
 // USER SIGN UP
 exports.signup = (req, res) => {
 
@@ -90,11 +172,12 @@ exports.signup = (req, res) => {
           "email":req.body.email,
           "password":bcryptedPassword
         }
+
         // New user insert query
         sqlCon.connection.query('INSERT INTO rnm_app_users SET?', [user], 
           (error, results, fields) => {
           if(error) {
-            console.log("Error occurred(loginroute insert query)", error);
+            console.log("Error occurred(signup insert query)", error);
             // Code 400 : http code for bad request
             // Code 200 : http code for successful request
             res.send({
@@ -167,14 +250,14 @@ exports.login = (req, res) => {
   
         // if there's an error in login id query
         if(error) {
-          console.log("error occurred",error);
+          console.log("error occurred(login)",error);
           res.send({
             "code":400,
             "failed":"Error occurred"
           })
         // If login id is found from database
         } else {
-          console.log('attempting login with user ID:', loginID, ' at Finnish time:', accurateDate);
+          console.log('attempting login with username:', loginID, ' at Finnish time:', accurateDate);
           if(results.length > 0) {
   
             // Compare password to hashed password

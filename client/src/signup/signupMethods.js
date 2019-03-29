@@ -50,7 +50,7 @@ class SignupMethods extends React.Component {
   constructor(props) {
     super(props);
     this.state= { 
-        username: '',
+        name: '',
         loginID: '',
         //statusRole: 1,
         email: '',
@@ -60,7 +60,8 @@ class SignupMethods extends React.Component {
         signupModalContent: 'placeholdervalue',
         toggleModalClicked: 0,
         regGuideStyle: {},
-        toolTipStyle: {}
+        toolTipStyle: {},
+        signupValidated: false
     };
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -178,7 +179,8 @@ class SignupMethods extends React.Component {
     }
   }
 
-  handleClick(event) {
+  // check if username is available before creating new
+  checkAvailability() {
 
     var apiBaseUrl;
 
@@ -190,10 +192,11 @@ class SignupMethods extends React.Component {
 
     // this object
     var self = this;
-      
+
     // request payload
+
     var payload = {
-      "name": self.state.username,
+      "name": self.state.name,
       "login": self.state.loginID,
       "status": 1,
       "email": self.state.email,
@@ -202,27 +205,40 @@ class SignupMethods extends React.Component {
 
     if(this.validateSignup(payload)) {
 
+      // AXIOS POST HERE,
       // create http post request
-      axios.post(apiBaseUrl+'signup', payload)
+      axios.post(apiBaseUrl+'checkSignupValid', payload)
       .then(function (response) {
           //console.log(response);
           
-          if(response.data.code === 200) {
-            console.log("signup successful");
+          if(response.data.status === 200) {
+            console.log("Signup form data is valid");
 
             self.setState({
-              modal: true,
-              signupModalContent: 'User created successfully',
-              newUserCreated:true
+              signupValidated: true
             });
-            alert("New user created. modal?");
+            console.log("res ",response.data);
+            console.log("signupValidated");
+
+            if(self.state.signupValidated) {
+              
+              self.userSignup();
+            }
+
+          } else if(response.data.status === 400) {
+            console.log("Bad request, HTTP 400");
+
+          } else if(response.data.status === 204) {
+            console.log("Request Success, Username already in use");
+            alert("Username already in use. (INSERT MODAL HERE)");
           } else {
-            console.log("error occurred: ",response.data.code);
+            console.log("error occurred at signup validation: ",response.data);
           }
       })
       .catch(function (error) {
           console.log("error in axios post", error);
       });
+
     } else {
       // error before post
       console.log("ValidateSignup returned false, check validation");
@@ -232,6 +248,51 @@ class SignupMethods extends React.Component {
         signupModalContent: 'Invalid input. Check requirements'
       });
     }
+  }
+
+  // create new user
+  userSignup() {
+
+    var apiBaseUrl;
+
+    if(process.env.NODE_ENV === 'production') {
+      apiBaseUrl = "https://peaceful-fortress-30481.herokuapp.com/api/";
+    } else {
+      apiBaseUrl = "http://localhost:5000/api/";
+    }
+
+    var self = this;
+
+    var payload = {
+      "name": self.state.name,
+      "login": self.state.loginID,
+      "status": 1,
+      "email": self.state.email,
+      "password": self.state.password
+    }
+
+    // create http post request
+    axios.post(apiBaseUrl+'signup', payload)
+    .then(function (response) {
+        //console.log(response);
+        
+        if(response.data.code === 200) {
+          console.log("signup successful");
+
+          self.setState({
+            modal: true,
+            signupModalContent: 'User created successfully',
+            newUserCreated:true
+          });
+          alert("New user created. modal?");
+        } else {
+          console.log("error occurred: ",response.data.code);
+        }
+    })
+    .catch(function (error) {
+        console.log("error in axios post", error);
+    });
+
   }
 
   showRequirements(event) {
@@ -259,7 +320,7 @@ class SignupMethods extends React.Component {
                         placeholder="First and last name" 
                         onChange = {(event) => 
                           this.setState({
-                            username:event.target.value
+                            name:event.target.value
                           })
                         }>
                         </Input>
@@ -313,8 +374,9 @@ class SignupMethods extends React.Component {
                         </UncontrolledTooltip>
                       </FormGroup>
                       <Button className="submitBtn-signup" 
-                        onClick={(event) => 
-                          this.handleClick(event)}>
+                        onClick={ () => 
+                          //this.userSignup(event)}>
+                          this.checkAvailability()}>
                           Sign up
                       </Button>
                     </Form>

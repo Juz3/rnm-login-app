@@ -83,6 +83,8 @@ function verifyToken(req, res, next) {
   }
 }
 
+// route for signup form validation and username check
+router.post('/checkSignupValid', routeFile.checkSignupValid);
 // route for user registration
 router.post('/signup', routeFile.signup);
 
