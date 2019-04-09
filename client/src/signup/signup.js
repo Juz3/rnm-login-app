@@ -89,6 +89,15 @@ class Signup extends React.Component {
     console.log("tmc", this.state.toggleModalClicked);
   }
 
+  onKeyPress(event) {
+    if (event.which === 13 /* 13 == Enter-key */) {
+      //console.log("event",event);
+      event.preventDefault();
+
+      this.checkAvailability();
+    }
+  }
+
   // client side signup validation function before sending to server
   validateSignup(payload) {
 
@@ -367,6 +376,9 @@ class Signup extends React.Component {
                           this.setState({
                             password:event.target.value
                           })
+                        }
+                        onKeyPress = {(event) => 
+                            this.onKeyPress(event)
                         }>
                         </Input>
                         <UncontrolledTooltip className="regTooltip" placement="right" target="password" style={this.state.toolTipStyle}>
