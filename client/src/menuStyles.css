@@ -134,18 +134,19 @@ html {
     padding: 5px 5px;
 }
 
-.signupModal {
+.signupModal, .loginModal, .passwordRecoveryModal {
     background: #26272b;
     color: #fff;
     text-align: center;
 }
 
-.signupModal Button {
+.signupModal Button, .loginModal Button, .passwordRecoveryModal Button {
     background: #191a1d;
     color: #fff;
     text-align: center;
     margin-right: 40%;
 }
+
 
 .regTooltip {
     display: default;

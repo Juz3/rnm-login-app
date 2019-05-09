@@ -37,7 +37,11 @@ import {
   Form, 
   FormGroup, 
   Input, 
-  Label
+  Label,
+  Modal, 
+  ModalHeader, 
+  ModalBody, 
+  ModalFooter
 } from 'reactstrap';
 
 class Login extends React.Component {
@@ -51,8 +55,36 @@ class Login extends React.Component {
         isLogged: false,
         authToken: '',
         userID: '',
-
+        loginModal: false,
+        loginModalContent: 'placeholderValue',
+        passwordRecoveryModalContent: 'placeholderz',
+        passwordRecoveryModal: false,
+        sendPasswordRecoveryEmail: false,
+        recoveryEmail: 'placeholderRecoveryEmail'
     };
+
+    this.toggleLoginModal = this.toggleLoginModal.bind(this);
+    this.togglePasswordRecoveryModal = this.togglePasswordRecoveryModal.bind(this);
+    this.sendPasswordRecoveryEmail = this.sendPasswordRecoveryEmail.bind(this);
+  }
+
+  toggleLoginModal() {
+    this.setState(prevState => ({
+      loginModal: !prevState.loginModal
+    }));
+  }
+
+  togglePasswordRecoveryModal() {
+    this.setState(prevState => ({
+      passwordRecoveryModal: !prevState.passwordRecoveryModal
+    }));
+  }
+
+  sendPasswordRecoveryEmail() {
+    console.log("given email address: ", this.state.recoveryEmail);
+    this.setState({
+      recoveryEmail: 'placeholderRecoveryEmail'
+    });
   }
 
   onKeyPress(event) {
@@ -176,7 +208,12 @@ class Login extends React.Component {
 
           } else if(response.data.code === 204) {
 
-              alert("Väärä käyttäjätunnus / salasana.");
+              //alert("Invalid username or password.");
+              self.setState({
+                loginModal: true,
+                loginModalContent: 'Invalid username or password.'
+              });
+              
           } else {
               // Here might be a bug if jwt is not valid!!
               console.log(response.data.code)
@@ -208,12 +245,22 @@ class Login extends React.Component {
     } else {
       // error before post
       console.log("ValidateLogin returned false, check validation");
-      alert("Tarkista käyttäjätunnus ja salasana");
+      //alert("Tarkista käyttäjätunnus ja salasana");
+      self.setState({
+        loginModal: true,
+        loginModalContent: 'Invalid username or password.'
+      });
     }
   }
 
   passwordRecovery(event) {
-    alert("NODEMAILER HERE");
+
+    var self = this;
+    //alert("NODEMAILER HERE");
+    self.setState({
+      passwordRecoveryModal: true,
+      passwordRecoveryModalContent: ''
+    });
   }
 
   render() {
@@ -282,6 +329,39 @@ class Login extends React.Component {
                         </Button>
                       </li>
                     </ul> 
+                    <Modal size="sm" centered fade isOpen={this.state.loginModal} 
+                    toggle={this.toggleLoginModal} className={this.props.className}>
+                      <ModalBody className="loginModal">
+                        {this.state.loginModalContent}
+                      </ModalBody>
+                      <ModalFooter className="loginModal">
+                        <Button onClick={this.toggleLoginModal}>OK</Button>
+                      </ModalFooter>
+                    </Modal>
+
+                    <Modal size="sm" centered fade isOpen={this.state.passwordRecoveryModal} 
+                    toggle={this.togglePasswordRecoveryModal} className={this.props.className}>
+                      <ModalBody className="passwordRecoveryModal">
+                        {this.state.passwordRecoveryModalContent}
+                        <Form>
+                          <FormGroup>
+                            <Label for="email">Enter email address</Label>
+                            <Input type="text" name="text" id="recoveryEmail" 
+                              placeholder="Email address" 
+                              onChange = {(event) => 
+                                this.setState({
+                                  recoveryEmail:event.target.value
+                                })
+                              }
+                            />
+                          </FormGroup>
+                        </Form>
+                      </ModalBody>
+                      <ModalFooter className="passwordRecoveryModal">
+                        <Button onClick={this.sendPasswordRecoveryEmail}>Send</Button>
+                        <Button onClick={this.togglePasswordRecoveryModal}>Close</Button>
+                      </ModalFooter>
+                    </Modal>
                   </div>
                 </Row>
               </Container>
