@@ -24,16 +24,16 @@
   },
   "homepage": "https://github.com/Juz3/rnm-login-app#readme",
   "dependencies": {
-    "bcrypt": "^3.0.2",
-    "body-parser": "^1.18.3",
-    "concurrently": "^4.1.0",
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.2",
     "cookie-parser": "^1.4.3",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "jsonwebtoken": "^8.4.0",
-    "mysql": "^2.16.0",
+    "mysql": "^2.17.1",
     "nodemailer": "^5.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.19.4"
   }
 }

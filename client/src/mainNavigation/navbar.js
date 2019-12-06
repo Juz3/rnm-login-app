@@ -1,4 +1,4 @@
- /**
+/**
  *  <Navigation.js>
  *
  *  Copyright information
@@ -6,37 +6,31 @@
  *      Copyright (C) 2018 Jussi Koivumäki <firstname.lastname@cs.tamk.fi>
  *
  *  License
- * 
- *      Permission to use, copy, modify, and/or distribute this software 
- *      for any purpose with or without fee is hereby granted, provided that 
+ *
+ *      Permission to use, copy, modify, and/or distribute this software
+ *      for any purpose with or without fee is hereby granted, provided that
  *      the above copyright notice and this permission notice appear in all copies.
  *
- *      THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES 
- *      WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF 
- *      MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR 
- *      ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES 
- *      WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN 
- *      AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING 
+ *      THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ *      WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ *      MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ *      ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ *      WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+ *      AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING
  *      OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- * 
- * 
+ *
+ *
  * @author Jussi Koivumäki
- * 
+ *
  *
  */
 
-import React from 'react';
-import {  
-  Link,
-  withRouter } from 'react-router-dom';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
 
-import {
-  Button,
-  Navbar,
-  Nav,
-  NavItem } from 'reactstrap';
+import { Button, Navbar, Nav, NavItem } from "reactstrap";
 
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
 export default class Navigation extends React.Component {
   constructor(props) {
@@ -47,35 +41,33 @@ export default class Navigation extends React.Component {
       isCookie: false,
       loggedOut: false,
       logoutButtonStyle: {
-        display: 'none'
+        display: "none"
       },
       loginStyle: {
-        display: ''
+        display: ""
       },
       searchStyle: {
-        display: 'none'
+        display: "none"
       },
       storageStyle: {
-        display: 'none'
+        display: "none"
       },
       homeStyle: {
-        display: 'none'
+        display: "none"
       },
       titleStyle: {
-        position: 'absolute',
-        paddingLeft: '0px',
-        left: '50%',
-        transform: 'translatex(-50%)'
+        position: "absolute",
+        paddingLeft: "0px",
+        left: "50%",
+        transform: "translatex(-50%)"
       }
     };
   }
 
   componentDidMount() {
-
     const cookies = new Cookies();
-    
-    if(typeof cookies.get('jwtAuth') !== 'undefined') {
 
+    if (typeof cookies.get("jwtAuth") !== "undefined") {
       //console.log("navbar cookie 1");
       //console.log(typeof cookies.get('jwtAuth'))
 
@@ -83,7 +75,7 @@ export default class Navigation extends React.Component {
       this.setState({
         isCookie: true,
         logoutButtonStyle: {
-          display: ''
+          display: ""
         }
       });
     } else {
@@ -92,10 +84,10 @@ export default class Navigation extends React.Component {
       this.setState({
         isCookie: false,
         logoutButtonStyle: {
-          display: 'none'
+          display: "none"
         },
         loginStyle: {
-          display: ''
+          display: ""
         }
       });
     }
@@ -104,68 +96,66 @@ export default class Navigation extends React.Component {
   render() {
     const cookies = new Cookies();
 
-    if(typeof cookies.get('jwtAuth') !== 'undefined') {
-    
-      if(this.state.isCookie === false) {
+    if (typeof cookies.get("jwtAuth") !== "undefined") {
+      if (this.state.isCookie === false) {
         this.setState({
           isCookie: true,
           logoutButtonStyle: {
-            display: ''
+            display: ""
           },
           loginStyle: {
-            display: 'none'
+            display: "none"
           },
           searchStyle: {
-            display: ''
+            display: ""
           },
           storageStyle: {
-            display: ''
+            display: ""
           },
           homeStyle: {
-            display: ''
+            display: ""
           }
-        })
+        });
       }
     }
 
-    const LogOutButton = withRouter(
-      ({ history }) =>
-        <Button className="logOutBtn" style={this.state.logoutButtonStyle}
-          onClick={() => {
-            
-            // remove jwt cookie
-            cookies.remove('jwtAuth');
+    const LogOutButton = withRouter(({ history }) => (
+      <Button
+        className="logOutBtn"
+        style={this.state.logoutButtonStyle}
+        onClick={() => {
+          // remove jwt cookie
+          cookies.remove("jwtAuth");
 
-            this.setState({
-              isCookie: false,
-              logoutButtonStyle: {
-                display: 'none'
-              },
-              loggedOut: true,
-              loginStyle: {
-                display: ''
-              },
-              searchStyle: {
-                display: 'none'
-              },
-              storageStyle: {
-                display: 'none'
-              },
-              homeStyle: {
-                display: 'none'
-              }
-            });
-        
-            alert("Logged out");
-            // redirect back to index page
-            history.push("/login")
-            
-          }}
-        >
-          Log out
-        </Button>
-    );
-/* LINKS NOT IN USE AFTER DB CHANGE
+          this.setState({
+            isCookie: false,
+            logoutButtonStyle: {
+              display: "none"
+            },
+            loggedOut: true,
+            loginStyle: {
+              display: ""
+            },
+            searchStyle: {
+              display: "none"
+            },
+            storageStyle: {
+              display: "none"
+            },
+            homeStyle: {
+              display: "none"
+            }
+          });
+
+          alert("Logged out");
+          // redirect back to index page
+          history.push("/login");
+        }}
+      >
+        Log out
+      </Button>
+    ));
+    /* LINKS NOT IN USE AFTER DB CHANGE
   <NavItem style={this.state.searchStyle}>
     <Link className="nav-link" to="/search">
         Search
@@ -178,23 +168,20 @@ export default class Navigation extends React.Component {
   </NavItem>
 */
     return (
-
       <div>
         <div className="topNav">
           <Navbar expand="md">
             <Nav className="mr-auto">
               <NavItem className="logoImg">
                 <Link to="/home">
-                  <img alt="logoimg" src={require("../icon.png") }/>
+                  <img alt="logoimg" src={require("../icon.png")} />
                 </Link>
               </NavItem>
             </Nav>
             <Nav className="titleLink">
               <NavItem className="titleLink">
                 <Link className="navbar-brand" to="/home">
-                  <p style={this.state.titleStyle}>
-                    RNM login web application
-                  </p>
+                  <p style={this.state.titleStyle}>RNM login web application</p>
                 </Link>
               </NavItem>
             </Nav>
@@ -210,23 +197,22 @@ export default class Navigation extends React.Component {
           <Nav>
             <NavItem style={this.state.loginStyle}>
               <Link className="nav-link" to="/login">
-                  Log in
+                Log in
               </Link>
             </NavItem>
             <NavItem style={this.state.loginStyle}>
               <Link className="nav-link" to="/signup">
-                  Sign up
+                Sign up
               </Link>
             </NavItem>
             <NavItem style={this.state.homeStyle}>
               <Link className="nav-link" to="/home">
-                  Home
+                Home
               </Link>
             </NavItem>
-
             <NavItem>
               <Link className="nav-link" to="/about">
-                  About
+                About
               </Link>
             </NavItem>
           </Nav>

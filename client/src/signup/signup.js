@@ -324,7 +324,9 @@ class Signup extends React.Component {
                     <Form>
                       <FormGroup>
                         <Label for="Name">First and last name</Label>
-                        <p className="regGuidePara" style={this.state.regGuideStyle}>4-100 characters, no numbers</p>
+                        <p className="regGuidePara" 
+                        style={this.state.regGuideStyle}>
+                          4-100 characters, no numbers</p>
                         <Input type="text" name="name" id="name" 
                         placeholder="First and last name" 
                         onChange = {(event) => 
@@ -333,13 +335,16 @@ class Signup extends React.Component {
                           })
                         }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="name" style={this.state.toolTipStyle}>
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="name" 
+                        style={this.state.toolTipStyle}>
                           4-100 characters, no numbers
                         </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="LoginID">Username</Label>
-                        <p className="regGuidePara" style={this.state.regGuideStyle}>4-16 characters, no white space</p>
+                        <p className="regGuidePara" 
+                        style={this.state.regGuideStyle}>
+                          4-16 characters, no white space</p>
                         <Input type="text" name="loginID" id="loginID" 
                         placeholder="Username" 
                         onChange = {(event) => 
@@ -348,13 +353,16 @@ class Signup extends React.Component {
                             })
                           }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="loginID" style={this.state.toolTipStyle}>
-                        4-16 characters, no white space
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="loginID" 
+                        style={this.state.toolTipStyle}>
+                          4-16 characters, no white space
                         </UncontrolledTooltip>
                       </FormGroup>
                       <FormGroup>
                         <Label for="email">Email</Label>
-                        <p className="regGuidePara" style={this.state.regGuideStyle}>6-100 characters, something@some.domain</p>
+                        <p className="regGuidePara" 
+                        style={this.state.regGuideStyle}>
+                          6-100 characters, something@some.domain</p>
                         <Input type="email" name="email" id="email" 
                         placeholder="Email address" 
                         onChange = {(event) => 
@@ -363,7 +371,8 @@ class Signup extends React.Component {
                           })
                         }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="email" style={this.state.toolTipStyle}>
+                        <UncontrolledTooltip className="regTooltip" placement="right" target="email" 
+                        style={this.state.toolTipStyle}>
                           6-100 characters, something@some.domain
                         </UncontrolledTooltip>
                       </FormGroup>
@@ -381,7 +390,10 @@ class Signup extends React.Component {
                             this.onKeyPress(event)
                         }>
                         </Input>
-                        <UncontrolledTooltip className="regTooltip" placement="right" target="password" style={this.state.toolTipStyle}>
+                        <UncontrolledTooltip className="regTooltip" 
+                        placement="right" 
+                        target="password" 
+                        style={this.state.toolTipStyle}>
                           4-64 characters
                         </UncontrolledTooltip>
                       </FormGroup>
@@ -392,7 +404,10 @@ class Signup extends React.Component {
                           Sign up
                       </Button>
                     </Form>
-                    <Modal size="sm" centered fade isOpen={this.state.modal} toggle={this.toggleModal} className={this.props.className}>
+                    <Modal size="sm" centered fade 
+                    isOpen={this.state.modal} 
+                    toggle={this.toggleModal} 
+                    className={this.props.className}>
                       <ModalBody className="signupModal">
                         {this.state.signupModalContent}
                       </ModalBody>

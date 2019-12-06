@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // import pages
-import Navigation from './mainNavigation/navbar';
-import LoginPage from './login/';
-import HomePage from './home/home';
-import StoragePage from './storage/';
-import Search from './search/search';
-import AboutPage from './about/';
-import Signup from './signup/signup';
+import Navigation from "./mainNavigation/navbar";
+import LoginPage from "./login/";
+import HomePage from "./home/home";
+import StoragePage from "./storage/";
+import Search from "./search/search";
+import AboutPage from "./about/";
+import Signup from "./signup/signup";
 
 // css imports - rework these into sane css structure
-import './lainaus.css';
-import './menuStyles.css';
+import "./lainaus.css";
+import "./menuStyles.css";
 
 class App extends Component {
-
   render() {
-
     return (
       <Router>
         <div className="App">
